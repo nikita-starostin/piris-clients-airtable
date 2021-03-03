@@ -137,4 +137,29 @@ export class AddClientStore {
     setMonthlyMoneyProfile(monthlyMoneyProfile: string | undefined) {
         this.monthlyMoneyProfile = monthlyMoneyProfile;
     }
+
+    resetToDefaults() {
+        this.name = undefined;
+        this.surname = undefined;
+        this.patronymic = undefined;
+        this.dateOfBirth = undefined;
+        this.passportSeria = undefined;
+        this.passportNumber = undefined;
+        this.passportCreatedAt = undefined;
+        this.passportIdentity = undefined;
+        this.passportLocation = undefined;
+        this.city = undefined;
+        this.address = undefined;
+        this.phoneHome = undefined;
+        this.phoneMobile = undefined;
+        this.email = undefined;
+        this.job = undefined;
+        this.jobPosition = undefined;
+        this.cityRegistration = undefined;
+        this.maritalStatus = undefined;
+        this.citizenship = undefined;
+        this.disability = undefined;
+        this.pensioner = undefined;
+        this.monthlyMoneyProfile = undefined;
+    }
 }

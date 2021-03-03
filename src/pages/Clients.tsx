@@ -37,6 +37,7 @@ import {
     PHONE_MOBILE_LABEL,
     SURNAME_LABEL
 } from './addClients/addClients.constants';
+import {useAddClientStore} from './addClients/useAddClientStore';
 
 const useStyles = makeStyles({
     table: {
@@ -47,6 +48,7 @@ const useStyles = makeStyles({
 export default function Clients(): React.ReactElement {
     const [clients, setClients] = useState<any[]>([]);
     const {table} = useAirTable();
+    const {resetToDefaults} = useAddClientStore();
     const {toAddClients} = useAppRouting();
     useEffect(() => {
         table.select().firstPage().then(clients => {
@@ -61,7 +63,10 @@ export default function Clients(): React.ReactElement {
         <ActionsContainer>
             <Button color='primary'
                     variant='contained'
-                    onClick={toAddClients}>Add</Button>
+                    onClick={() => {
+                        resetToDefaults();
+                        toAddClients();
+                    }}>Add</Button>
         </ActionsContainer>
         <TableContainer component={Paper}>
             <Table className={classes.table}>
