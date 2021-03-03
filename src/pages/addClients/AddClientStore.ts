@@ -47,6 +47,7 @@ export class AddClientStore {
         this.setDisability = this.setDisability.bind(this);
         this.setPensioner = this.setPensioner.bind(this);
         this.setMonthlyMoneyProfile = this.setMonthlyMoneyProfile.bind(this);
+        this.resetToDefaults = this.resetToDefaults.bind(this);
         makeAutoObservable(this);
     }
 
