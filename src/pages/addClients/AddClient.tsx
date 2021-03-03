@@ -1,4 +1,6 @@
 import {Box, Button, FormControl, Input, InputLabel} from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import {observer} from 'mobx-react-lite';
 import React, {useState} from 'react';
 import DatePicker from 'react-datepicker'
@@ -8,14 +10,18 @@ import {useAppRouting} from '../../useAppRouting';
 import {useAirTable} from '../../utils/useAirTable';
 import {
     ADDRESS_LABEL,
+    CITIZENSHIP_ENUM_VALUES,
     CITIZENSHIP_LABEL,
+    CITY_ENUM_VALUES,
     CITY_LABEL,
     CITY_REGISTRATION_LABEL,
     DATE_OF_BIRTH_LABEL,
+    DISABILITY_ENUM_VALUES,
     DISABILITY_LABEL,
     EMAIL_LABEL,
     JOB_LABEL,
     JOB_POSITION_LABEL,
+    MARITAL_ENUM_VALUES,
     MARITAL_STATUS_LABEL,
     MONTHLY_MONEY_PROFILE_LABEL,
     NAME_LABEL,
@@ -31,6 +37,7 @@ import {
     SURNAME_LABEL
 } from './addClients.constants';
 import {useAddClientStore} from './useAddClientStore';
+
 
 function BaseInput({value, setValue, label, type, inputStyle, ...props}: { value: any, setValue: (newValue: any) => void, label: string, type?: string, inputStyle?: React.CSSProperties, onFocus?: () => void, onBlur?: () => void, onClick?: () => void }) {
     return <FormControl>
@@ -52,6 +59,28 @@ function BaseInput({value, setValue, label, type, inputStyle, ...props}: { value
 
 function TextInput(props: { value: string, setValue: (newValue: string) => void, label: string, onFocus?: () => void, onBlur?: () => void; onClick?: () => void }) {
     return <BaseInput type='text' {...props} />
+}
+
+
+function SingleSelectInput({value, setValue, options, label}: { value: string, label: string, setValue: (newValue: string | null) => void, options: string[] }) {
+    return (
+        <FormControl>
+            <Autocomplete<string>
+                id="combo-box-demo"
+                options={options}
+                value={value}
+                onChange={(_, newValue) => setValue(newValue)}
+                getOptionLabel={(option: string) => option}
+                style={{
+                    width: '207px',
+                    marginRight: '16px',
+                    marginTop: '10px',
+                }}
+                renderInput={(params) => <TextField {...params} label={label}
+                                                    variant="outlined"/>}
+            />
+        </FormControl>
+    );
 }
 
 function DateInput({value, setValue, label}: { value?: Date | null, setValue: (newValue: Date | null) => void, label: string, type?: string }) {
@@ -205,9 +234,10 @@ export default observer(function AddClient() {
             <TextInput value={passportLocation || ''}
                        setValue={setPassportLocation}
                        label={PASSPORT_LOCATION_LABEL}/>
-            <TextInput value={city || ''}
-                       setValue={setCity}
-                       label={CITY_LABEL}/>
+            <SingleSelectInput value={city || ''}
+                               setValue={setCity}
+                               label={CITY_LABEL}
+                               options={CITY_ENUM_VALUES}/>
             <TextInput value={address || ''}
                        setValue={setAddress}
                        label={ADDRESS_LABEL}/>
@@ -226,18 +256,22 @@ export default observer(function AddClient() {
             <TextInput value={jobPosition || ''}
                        setValue={setJobPosition}
                        label={JOB_POSITION_LABEL}/>
-            <TextInput value={cityRegistration || ''}
-                       setValue={setCityRegistration}
-                       label={CITY_REGISTRATION_LABEL}/>
-            <TextInput value={maritalStatus || ''}
-                       setValue={setMaritalStatus}
-                       label={MARITAL_STATUS_LABEL}/>
-            <TextInput value={citizenship || ''}
-                       setValue={setCitizenship}
-                       label={CITIZENSHIP_LABEL}/>
-            <TextInput value={disability || ''}
-                       setValue={setDisability}
-                       label={DISABILITY_LABEL}/>
+            <SingleSelectInput value={cityRegistration || ''}
+                               setValue={setCityRegistration}
+                               options={CITY_ENUM_VALUES}
+                               label={CITY_REGISTRATION_LABEL}/>
+            <SingleSelectInput value={maritalStatus || ''}
+                               setValue={setMaritalStatus}
+                               options={MARITAL_ENUM_VALUES}
+                               label={MARITAL_STATUS_LABEL}/>
+            <SingleSelectInput value={citizenship || ''}
+                               setValue={setCitizenship}
+                               options={CITIZENSHIP_ENUM_VALUES}
+                               label={CITIZENSHIP_LABEL}/>
+            <SingleSelectInput value={disability || ''}
+                               setValue={setDisability}
+                               options={DISABILITY_ENUM_VALUES}
+                               label={DISABILITY_LABEL}/>
             <BoolInput value={pensioner || false}
                        setValue={setPensioner}
                        label={PENSIONER_LABEL}/>

@@ -1,3 +1,22 @@
+import {CitizenshipEnum} from './enums/CitizenshipEnum';
+import {CityEnum} from './enums/CityEnum';
+import {DisabilityEnum} from './enums/DisabilityEnum';
+import {MaritalStatusEnum} from './enums/MaritalStatusEnum';
+
+const stringIsNumber = (value: string | number) => !isNaN(Number(value));
+const stringIsNotNumber = (value: string | number) => !stringIsNumber(value);
+function enumToArray(enumme: any): string[] {
+   return Object.keys(enumme)
+       .filter(stringIsNotNumber)
+       .map(key => enumme[key]);
+}
+
+
+export const CITY_ENUM_VALUES = enumToArray(CityEnum);
+export const MARITAL_ENUM_VALUES = enumToArray(MaritalStatusEnum);
+export const DISABILITY_ENUM_VALUES = enumToArray(DisabilityEnum);
+export const CITIZENSHIP_ENUM_VALUES = enumToArray(CitizenshipEnum);
+
 export const NAME_LABEL = 'Имя';
 export const SURNAME_LABEL = 'Фамилия';
 export const PATRONYMIC_LABEL = 'Отчество';
@@ -20,3 +39,4 @@ export const CITIZENSHIP_LABEL = 'Гражданство';
 export const DISABILITY_LABEL = 'Инвалидность';
 export const PENSIONER_LABEL = 'Пенсионер';
 export const MONTHLY_MONEY_PROFILE_LABEL = 'Ежемесячный доход';
+

@@ -86,8 +86,8 @@ export class AddClientStore {
         this.passportLocation = passportLocation;
     }
 
-    setCity(city: string | undefined) {
-        this.city = city;
+    setCity(city: string | undefined | null) {
+        this.city = city || undefined;
     }
 
     setAddress(address: string | undefined) {
@@ -114,20 +114,20 @@ export class AddClientStore {
         this.jobPosition = jobPosition;
     }
 
-    setCityRegistration(cityRegistration: string | undefined) {
-        this.cityRegistration = cityRegistration;
+    setCityRegistration(cityRegistration: string | undefined | null) {
+        this.cityRegistration = cityRegistration || undefined;
     }
 
-    setMaritalStatus(maritalStatus: string | undefined) {
-        this.maritalStatus = maritalStatus;
+    setMaritalStatus(maritalStatus: string | undefined | null) {
+        this.maritalStatus = maritalStatus || undefined;
     }
 
-    setCitizenship(citizenship: string | undefined) {
-        this.citizenship = citizenship;
+    setCitizenship(citizenship: string | undefined | null) {
+        this.citizenship = citizenship || undefined;
     }
 
-    setDisability(disability: string | undefined) {
-        this.disability = disability;
+    setDisability(disability: string | undefined | null) {
+        this.disability = disability || undefined;
     }
 
     setPensioner(pensioner: boolean | undefined) {
