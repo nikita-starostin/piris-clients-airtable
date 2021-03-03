@@ -63,7 +63,6 @@ export class AddClientStore {
     }
 
     setDateOfBirth(dateOfBirth: Date | undefined | null) {
-        console.log(dateOfBirth);
         this.dateOfBirth = dateOfBirth || undefined;
     }
 

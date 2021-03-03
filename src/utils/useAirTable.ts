@@ -1,8 +1,8 @@
 import Airtable from 'airtable';
 
-const AIRTABLE_BASE = 'appQefmpGydj1FQW1';
-const AIRTABLE_API_KEY = 'keyvgFmx5rjWR8GIr';
-const AIRTABLE_TABLE_NAME = 'clients';
+const AIRTABLE_BASE = process.env.REACT_APP_AIRTABLE_BASE as string;
+const AIRTABLE_API_KEY = process.env.REACT_APP_AIRTABLE_API_KEY;
+const AIRTABLE_TABLE_NAME = process.env.REACT_APP_AIRTABLE_TABLE_NAME as string;
 
 const base = new Airtable({apiKey: AIRTABLE_API_KEY}).base(AIRTABLE_BASE);
 
