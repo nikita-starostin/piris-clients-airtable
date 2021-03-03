@@ -103,6 +103,12 @@ function DateInput({value, setValue, label}: { value?: Date | null, setValue: (n
                        }}/>;
 }
 
+function NumberInput(props: { value: string; setValue(newValue: string): void; label: string; }) {
+    return <BaseInput {...props}
+                      type='number'
+    />
+}
+
 function BoolInput({value, setValue, ...props}: { value: boolean, setValue: (newValue: boolean) => void, label: string, type?: string }) {
     return <BaseInput {...props}
                       value={value.toString()}
@@ -275,7 +281,7 @@ export default observer(function AddClient() {
             <BoolInput value={pensioner || false}
                        setValue={setPensioner}
                        label={PENSIONER_LABEL}/>
-            <TextInput value={monthlyMoneyProfile || ''}
+            <NumberInput value={monthlyMoneyProfile || ''}
                        setValue={setMonthlyMoneyProfile}
                        label={MONTHLY_MONEY_PROFILE_LABEL}/>
         </Box>
