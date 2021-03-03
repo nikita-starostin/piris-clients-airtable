@@ -52,7 +52,6 @@ export default function Clients(): React.ReactElement {
     const {toAddClients} = useAppRouting();
     useEffect(() => {
         table.select().firstPage().then(clients => {
-            console.log(clients)
             setClients(clients);
         });
     }, [table])
